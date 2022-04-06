@@ -4,7 +4,6 @@ import { createComponentInstance, setupComponent } from "./component";
 export function render(vnode, container) {
     //patch方法
 
-
     patch(vnode, container);
 }
 
@@ -36,7 +35,7 @@ function mountElement(vnode: any, container: any) {
 
     if (typeof children === "string") {
         el.textContent = children;
-    } else if (Array.isArray(children)) {
+    } else if (Array.isArray(children)) { //递归调用mountChildren();
         mountChildren(vnode, el)
     }
 

@@ -16,7 +16,6 @@ export const App = {
                 h("p", { class: "red" }, "hi"),
                 h("p", { class: "blue" }, "mini-vue")
             ]
-
         )
     },
     setup() {
