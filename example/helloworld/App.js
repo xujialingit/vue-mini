@@ -1,5 +1,5 @@
 import { h } from "../../lib/guide-mini-vue.esm.js"
-
+import { Foo } from "./Foo.js"
 window.self = null;
 export const App = {
     //.vue
@@ -19,13 +19,13 @@ export const App = {
                 }
             },
             //children --> string
-            "hello," + this.msg
+            // "hello," + this.msg
 
             //children --> Array
-            // [
-            //     h("p", { class: "red" }, "hi"),
-            //     h("p", { class: "blue" }, "mini-vue")
-            // ]
+            [
+                h("p", { class: "red" }, "hi" + this.msg),
+                h(Foo, { class: "blue", count: 10 })
+            ]
         )
     },
     setup() {
