@@ -8,9 +8,8 @@ export function render(vnode, container) {
 }
 
 function patch(vnode, container) {
-
     //TODO 判断vnode是不是一个element
-    //是element 那么久应该处理 element
+    //是element 那么就应该处理 element
     if (typeof vnode.type === "string") {
         processElement(vnode, container);
     } else if (isObject(vnode.type)) {
@@ -28,7 +27,7 @@ function processComponent(vnode: any, container: any) {
 }
 
 function mountElement(vnode: any, container: any) {
-    const el = document.createElement(vnode.type);
+    const el = (vnode.el = document.createElement(vnode.type));
 
     //string array
     const { children } = vnode;
@@ -54,19 +53,21 @@ function mountChildren(vnode, container) {
     });
 }
 
-function mountComponent(vnode: any, container) {
-    const instance = createComponentInstance(vnode);
+function mountComponent(initialVNode: any, container) {
+    const instance = createComponentInstance(initialVNode);
 
     setupComponent(instance);
-    setupRenderEffect(instance, container);
+    setupRenderEffect(instance, initialVNode, container);
 
 }
 
-function setupRenderEffect(instance: any, container) {
-    const subTree = instance.render();
+function setupRenderEffect(instance: any, initialVNode, container) {
+    const { proxy } = instance;
+    const subTree = instance.render.call(proxy);
 
     //vnode --> patch 虚拟节点树
     //vnode --> element --> mountElement
 
-    patch(subTree, container)
+    patch(subTree, container);
+    initialVNode.el = subTree.el;
 }
