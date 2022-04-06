@@ -42,8 +42,18 @@ function mountElement(vnode: any, container: any) {
     //props
     const { props } = vnode;
     for (const key in props) {
+        console.log(key);
         const val = props[key];
-        el.setAttribute(key, val)
+        //具体的click --> 通用
+        // on + Event name
+        //onMousedown
+        const isOn = (key: string) => /^on[A-Z]/.test(key)
+        if (isOn(key)) {
+            const event = key.slice(2).toLowerCase();
+            el.addEventListener(event, val)
+        } else {
+            el.setAttribute(key, val)
+        }
     }
     container.append(el);
 }

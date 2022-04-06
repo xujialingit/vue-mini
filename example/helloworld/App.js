@@ -10,6 +10,13 @@ export const App = {
         return h("div",
             {
                 id: "root",
+                class: "red",
+                onClick() {
+                    console.log("click");
+                },
+                onMouseover() {
+                    console.log("mouseover")
+                }
             },
             //children --> string
             "hello," + this.msg
