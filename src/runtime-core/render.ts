@@ -38,7 +38,6 @@ function mountElement(vnode: any, container: any) {
     } else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) { //递归调用mountChildren();
         mountChildren(vnode, el)
     }
-
     //props
     const { props } = vnode;
     for (const key in props) {

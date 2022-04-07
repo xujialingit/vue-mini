@@ -1,3 +1,4 @@
+import { isObject } from "../shared/index";
 import { mutableHandlers, readonlyHandlers, shallowReadonlyHandlers, ReactiveFlag } from "./baseHanlders";
 
 
@@ -24,6 +25,10 @@ export function readonly(raw) {
 
 //shallowReadonly
 export function shallowReadonly(raw) {
+    if (!isObject(raw)) {
+        console.warn(`${raw} not be a Object!`)
+        return raw;
+    }
     return new Proxy(raw, shallowReadonlyHandlers)
 }
 

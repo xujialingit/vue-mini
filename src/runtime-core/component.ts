@@ -6,7 +6,7 @@ export function createComponentInstance(vnode) {
         vnode,
         type: vnode.type,
         setupState: {},
-        props: {}
+        props: {},
     }
 
     return component;
@@ -23,7 +23,7 @@ export function setupComponent(instance) {
 function setupStatefulComponent(instance: any) {
     const Component = instance.vnode.type;
 
-    //ctx
+    //ctx  组件代理对象 --> 后续在组件里面通过this获取组件上的数据
     instance.proxy = new Proxy({ _: instance },
         PublicInstanceProxyHandlers
     )

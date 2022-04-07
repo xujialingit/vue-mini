@@ -5,6 +5,6 @@ export const Foo = {
         props.count++;
     },
     render() {
-        return h("div", {}, "hello" + this.count);
+        return h("div", { class: "red" }, "hello" + this.count);
     }
 }
