@@ -1,6 +1,6 @@
 import { track, trigger } from "./effect";
 import { reactive, readonly } from "./reactive";
-import { isObject, extend } from "../shared";
+import { isObject, extend } from "../shared/index";
 //枚举
 export const enum ReactiveFlag {
     IS_REACTIVE = "__v_isReactive",
